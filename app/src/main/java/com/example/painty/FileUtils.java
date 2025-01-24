@@ -30,14 +30,16 @@ public class FileUtils {
                     Objects.requireNonNull(context.getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values))
             );
 
-            // Write the bitmap to the output stream
+            // Write a message to the user confirming or denying saved image
             if (outputStream != null) {
                 bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
                 Toast.makeText(context, "Painting saved successfully.", Toast.LENGTH_LONG).show();
             } else {
                 Toast.makeText(context, "Failed to access storage.", Toast.LENGTH_SHORT).show();
             }
-        } catch (Exception e) {
+        }
+        // Catching any other errors that may arise
+        catch (Exception e) {
             e.printStackTrace();
             Toast.makeText(context, "Failed to save painting.", Toast.LENGTH_SHORT).show();
         } finally {

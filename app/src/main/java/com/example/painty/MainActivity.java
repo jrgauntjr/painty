@@ -10,13 +10,14 @@ import androidx.appcompat.app.AppCompatActivity;
 public class MainActivity extends AppCompatActivity {
 
     private DrawingView drawingView;
-    private static final int REQUEST_WRITE_PERMISSION = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // Create the activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Initializing our drawing view and buttons
         drawingView = findViewById(R.id.drawing_view);
         Button colorButton = findViewById(R.id.color_button);
         Button saveButton = findViewById(R.id.save_button);
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    // Helper function to call the save process in the FileUtils class
     private void savePainting() {
         Bitmap bitmap = drawingView.getBitmap();
         FileUtils.saveBitmapToStorage(bitmap, this); // Utility function to save the bitmap

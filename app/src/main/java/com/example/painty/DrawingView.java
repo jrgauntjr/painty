@@ -20,11 +20,13 @@ public class DrawingView extends View {
     private Bitmap bitmap;
     private Canvas canvas;
 
+    // Helper function to initialize the canvas
     public DrawingView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
     }
 
+    // Initializing the canvas/bitmap
     private void init() {
         paint = new Paint();
         paint.setColor(Color.BLACK);
@@ -34,11 +36,12 @@ public class DrawingView extends View {
 
         path = new Path();
 
-        bitmap = Bitmap.createBitmap(1000, 1000, Bitmap.Config.ARGB_8888);
+        bitmap = Bitmap.createBitmap(1100, 1500, Bitmap.Config.ARGB_8888);
         canvas = new Canvas(bitmap);
         canvas.drawColor(Color.WHITE);
     }
 
+    // Creating the Canvas of which the user will draw on
     @Override
     protected void onDraw(Canvas drawCanvas) {
         super.onDraw(drawCanvas);
@@ -46,6 +49,7 @@ public class DrawingView extends View {
         drawCanvas.drawPath(path, paint);
     }
 
+    // On the event the user touches the canvas, it draws!
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         float x = event.getX();
@@ -68,10 +72,12 @@ public class DrawingView extends View {
         return true;
     }
 
+    // Getter function to get the bitmap
     public Bitmap getBitmap() {
         return bitmap;
     }
 
+    // Using Skydove's Android color picker to select our color
     public void showColorPicker() {
         ColorPickerDialog.Builder builder = new ColorPickerDialog.Builder(getContext());
         builder.setTitle("Pick a Color");
